@@ -1,3 +1,6 @@
+## Field of view using the symmetric shadowcasting algorithm described here:
+##   https://www.albertford.com/shadowcasting/
+## Modified to support a distance limit from the origin (radius).
 class_name FieldOfView
 extends Node
 

@@ -21,7 +21,9 @@ script = ExtResource("4_212aa")
 [node name="FieldOfView" type="Node" parent="Map"]
 script = ExtResource("5_mdqh5")
 
-[node name="Entities" type="Node2D" parent="."]
+[node name="Tiles" type="Node2D" parent="Map"]
+
+[node name="Entities" type="Node2D" parent="Map"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)

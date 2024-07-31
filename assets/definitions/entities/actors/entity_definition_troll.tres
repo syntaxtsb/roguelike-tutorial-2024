@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EntityDefinition" load_steps=4 format=3 uid="uid://csbcskrot7cgk"]
+
+[ext_resource type="Script" path="res://src/entities/entity_definition.gd" id="1_7q3lm"]
+[ext_resource type="Texture2D" uid="uid://cvh1nfxhsqgrf" path="res://assets/images/monochrome_packed.png" id="2_5pxur"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_be7nr"]
+atlas = ExtResource("2_5pxur")
+region = Rect2(400, 32, 16, 16)
+
+[resource]
+script = ExtResource("1_7q3lm")
+name = "Troll"
+texture = SubResource("AtlasTexture_be7nr")
+color = Color(0, 0.498039, 0, 1)
+is_blocking_movement = true
