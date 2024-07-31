@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="TileDefiniton" load_steps=4 format=3 uid="uid://f767dbte6xhc"]
+[gd_resource type="Resource" script_class="TileDefinition" load_steps=4 format=3 uid="uid://f767dbte6xhc"]
 
 [ext_resource type="Script" path="res://src/map/tile_definition.gd" id="1_akipy"]
 [ext_resource type="Texture2D" uid="uid://cvh1nfxhsqgrf" path="res://assets/images/monochrome_packed.png" id="2_5ykhf"]
@@ -11,6 +11,6 @@ region = Rect2(256, 0, 16, 16)
 script = ExtResource("1_akipy")
 texture = SubResource("AtlasTexture_n1i5k")
 color_lit = Color(1, 1, 1, 1)
-color_dark = Color(0.498039, 0.498039, 0.498039, 1)
+color_dark = Color(0.2484, 0.2484, 0.2484, 1)
 is_walkable = false
 is_transparent = false
