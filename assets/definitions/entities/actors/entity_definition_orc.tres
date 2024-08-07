@@ -1,7 +1,14 @@
-[gd_resource type="Resource" script_class="EntityDefinition" load_steps=4 format=3 uid="uid://bcghnfgt7guc7"]
+[gd_resource type="Resource" script_class="EntityDefinition" load_steps=6 format=3 uid="uid://bcghnfgt7guc7"]
 
+[ext_resource type="Script" path="res://src/entities/actors/components/component_definitions/fighter_component_definition.gd" id="1_depq3"]
 [ext_resource type="Script" path="res://src/entities/entity_definition.gd" id="1_ou3j2"]
 [ext_resource type="Texture2D" uid="uid://cvh1nfxhsqgrf" path="res://assets/images/monochrome_packed.png" id="2_dpdm3"]
+
+[sub_resource type="Resource" id="Resource_ena0n"]
+script = ExtResource("1_depq3")
+max_hp = 10
+power = 3
+defense = 0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0neiy"]
 atlas = ExtResource("2_dpdm3")
@@ -12,4 +19,6 @@ script = ExtResource("1_ou3j2")
 name = "Orc"
 texture = SubResource("AtlasTexture_0neiy")
 color = Color(0.247059, 0.498039, 0.247059, 1)
-is_blocking_movement = true
+is_blocking_movement = null
+fighter_definition = SubResource("Resource_ena0n")
+ai_type = 1
