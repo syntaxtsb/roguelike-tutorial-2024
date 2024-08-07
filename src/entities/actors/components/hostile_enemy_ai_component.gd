@@ -24,4 +24,4 @@ func perform() -> void:
 		var move_offset: Vector2i = destination - entity.grid_position
 		return MovementAction.new(entity, move_offset.x, move_offset.y).perform()
 	
-	return EscapeAction.new(entity).perform()
+	return WaitAction.new(entity).perform()

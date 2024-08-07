@@ -4,7 +4,7 @@ extends Node2D
 const player_definition: EntityDefinition = preload("res://assets/definitions/entities/actors/entity_definition_player.tres")
 
 @onready var player: Entity
-@onready var input_handler: InputHandler = $EventHandler
+@onready var input_handler: InputHandler = $InputHandler
 @onready var map: Map = $Map
 @onready var camera: Camera2D = $Camera2D
 
@@ -27,7 +27,7 @@ func _physics_process(_delta: float) -> void:
 
 
 func _handle_enemy_turns() -> void:
-	for entity in get_map_data().entities:
+	for entity in get_map_data().get_actors():
 		if entity.is_alive() and entity != player:
 			entity.ai_component.perform()
 

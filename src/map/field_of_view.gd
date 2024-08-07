@@ -30,7 +30,7 @@ func clear_fov() -> void:
 	_fov.clear()
 
 
-func compute_fov(map_data: MapData, origin: Vector2i, radius: int = INF):
+func compute_fov(map_data: MapData, origin: Vector2i, view_limit: int = INF):
 	mark_visible(map_data, origin)
 
 	for i in range(Cardinal.keys().size()):
@@ -74,7 +74,7 @@ func compute_fov(map_data: MapData, origin: Vector2i, radius: int = INF):
 					rows.push_back(current_row.next())
 
 		var first_row = Row.new(1, Rational.new(-1), Rational.new(1))
-		scan.call(first_row, radius)
+		scan.call(first_row, view_limit)
 
 
 enum Cardinal { NORTH, EAST, SOUTH, WEST }

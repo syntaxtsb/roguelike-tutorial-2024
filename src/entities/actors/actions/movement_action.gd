@@ -3,8 +3,6 @@ extends ActionWithDirection
 
 
 func perform() -> void:
-	var destination: Vector2i = entity.grid_position + offset
-	
 	var map_data: MapData = get_map_data()
 	var destination_tile: Tile = map_data.get_tile(get_destination())
 	if not destination_tile or not destination_tile.is_walkable():

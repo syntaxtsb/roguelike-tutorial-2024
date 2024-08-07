@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="EntityDefinition" load_steps=6 format=3 uid="uid://csbcskrot7cgk"]
+[gd_resource type="Resource" script_class="EntityDefinition" load_steps=7 format=3 uid="uid://csbcskrot7cgk"]
 
+[ext_resource type="Texture2D" uid="uid://dfh2iocbu113t" path="res://assets/resources/default_death_texture.tres" id="1_6bqkq"]
 [ext_resource type="Script" path="res://src/entities/entity_definition.gd" id="1_7q3lm"]
 [ext_resource type="Script" path="res://src/entities/actors/components/component_definitions/fighter_component_definition.gd" id="1_lo7yb"]
 [ext_resource type="Texture2D" uid="uid://cvh1nfxhsqgrf" path="res://assets/images/monochrome_packed.png" id="2_5pxur"]
@@ -9,6 +10,8 @@ script = ExtResource("1_lo7yb")
 max_hp = 16
 power = 4
 defense = 1
+death_texture = ExtResource("1_6bqkq")
+death_color = Color(0.545098, 0, 0, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_be7nr"]
 atlas = ExtResource("2_5pxur")
