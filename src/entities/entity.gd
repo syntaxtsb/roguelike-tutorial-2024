@@ -16,6 +16,13 @@ var grid_position: Vector2i:
 		grid_position = value
 		position = Grid.grid_to_world(grid_position)
 
+enum EntityType {CORPSE, ITEM, ACTOR}
+
+var type: EntityType:
+	set(value):
+		type = value
+		z_index = type
+
 
 func _init(map_data: MapData, start_position: Vector2i, entity_definition: EntityDefinition) -> void:
 	centered = false
@@ -32,6 +39,7 @@ func move(move_offset: Vector2i) -> void:
 
 func set_entity_type(entity_definition: EntityDefinition) -> void:
 	_definition = entity_definition
+	type = _definition.type
 	blocks_movement = _definition.is_blocking_movement
 	entity_name = _definition.name
 	texture = entity_definition.texture

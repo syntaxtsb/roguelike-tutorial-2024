@@ -23,5 +23,6 @@ name = "Orc"
 texture = SubResource("AtlasTexture_0neiy")
 color = Color(0.247059, 0.498039, 0.247059, 1)
 is_blocking_movement = null
+type = 2
 fighter_definition = SubResource("Resource_ena0n")
 ai_type = 1

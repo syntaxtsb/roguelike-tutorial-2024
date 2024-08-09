@@ -27,6 +27,7 @@ func die() -> void:
 	var death_message: String
 	if get_map_data().player == entity:
 		death_message = "You died!"
+		SignalBus.player_died.emit()
 	else:
 		death_message = "%s is dead!" % entity.get_entity_name()
 	
@@ -38,3 +39,4 @@ func die() -> void:
 	entity.entity_name = "Remains of %s" % entity.get_entity_name()
 	entity.blocks_movement = false
 	get_map_data().unregister_blocking_entity(entity)
+	entity.type = Entity.EntityType.CORPSE

@@ -15,6 +15,10 @@ run/main_scene="res://src/game/game.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://assets/images/icon.svg"
 
+[autoload]
+
+SignalBus="*res://src/utils/signal_bus.gd"
+
 [input]
 
 "Move up"={

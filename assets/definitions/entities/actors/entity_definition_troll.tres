@@ -23,5 +23,6 @@ name = "Troll"
 texture = SubResource("AtlasTexture_be7nr")
 color = Color(0, 0.498039, 0, 1)
 is_blocking_movement = true
+type = 2
 fighter_definition = SubResource("Resource_tsouv")
 ai_type = 1
