@@ -1,1 +1,1 @@
-Paticipating in the [2024 roguelike tutorial](https://www.reddit.com/r/roguelikedev/comments/1dt8bqm/roguelikedev_does_the_complete_roguelike_tutorial/) at the r/roguelikedev Reddit.
+Paticipating in the [2024 roguelike tutorial](https://www.reddit.com/r/roguelikedev/comments/1dt8bqm/roguelikedev_does_the_complete_roguelike_tutorial/) at the r/roguelikedev Reddit. This project is written for the Godot 4.2 engine, mostly following along with [SalinaDev's Godot tutorial from 2023](https://selinadev.github.io/tags/roguelike/).
