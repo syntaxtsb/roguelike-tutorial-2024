@@ -22,7 +22,10 @@ func get_action(player: Entity) -> Action:
 	
 	if Input.is_action_just_pressed("Wait"):
 		action = WaitAction.new(player)
-		
+	
+	if Input.is_action_just_pressed("View history"):
+		get_parent().transition_to(InputHandler.InputHandlers.HISTORY_VIEWER)
+	
 	if Input.is_action_just_pressed("Quit"):
 		action = EscapeAction.new(player)
 	
