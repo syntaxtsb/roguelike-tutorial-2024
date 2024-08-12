@@ -10,6 +10,8 @@ var map_data: MapData
 
 var fighter_component: FighterComponent
 var ai_component: BaseAIComponent
+var consumable_component: ConsumableComponent
+var inventory_component: InventoryComponent
 
 var grid_position: Vector2i:
 	set(value):
@@ -53,6 +55,15 @@ func set_entity_type(entity_definition: EntityDefinition) -> void:
 	if entity_definition.fighter_definition:
 		fighter_component = FighterComponent.new(entity_definition.fighter_definition)
 		add_child(fighter_component)
+	
+	if entity_definition.consumable_definition:
+		if entity_definition.consumable_definition is HealingConsumableComponentDefinition:
+			consumable_component = HealingConsumableComponent.new(entity_definition.consumable_definition)
+			add_child(consumable_component)
+	
+	if entity_definition.inventory_capacity > 0:
+		inventory_component = InventoryComponent.new(entity_definition.inventory_capacity)
+		add_child(inventory_component)
 
 
 func is_blocking_movement() -> bool:

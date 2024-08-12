@@ -47,3 +47,13 @@ func die() -> void:
 	entity.blocks_movement = false
 	get_map_data().unregister_blocking_entity(entity)
 	entity.type = Entity.EntityType.CORPSE
+
+func heal(amount: int) -> int:
+	var new_hp_value: int = clampi(hp + amount, 0, max_hp)
+	var amount_recovered: int = new_hp_value - hp
+	hp = new_hp_value
+	return amount_recovered
+
+
+func take_damage(amount: int) -> void:
+	hp -= amount
