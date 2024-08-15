@@ -21,6 +21,7 @@ func _ready() -> void:
 	MessageLog.send_message.bind(
 			"Hello and welcome, adventurer, to yet another dungeon!",
 			GameColors.WELCOME_TEXT).call_deferred()
+	camera.make_current.call_deferred()
 
 
 func _physics_process(_delta: float) -> void:
