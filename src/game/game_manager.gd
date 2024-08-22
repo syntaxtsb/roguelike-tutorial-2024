@@ -22,6 +22,10 @@ func load_main_menu() -> void:
 func _on_game_requested(try_load: bool) -> void:
 	var game: GameRoot = switch_to_scene(game_scene)
 	game.main_menu_requested.connect(load_main_menu)
+	if try_load:
+		game.load_game()
+	else:
+		game.new_game()
 
 
 func _ready():

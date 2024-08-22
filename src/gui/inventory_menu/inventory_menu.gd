@@ -23,7 +23,7 @@ func _register_item(index: int, item: Entity) -> void:
 	var char: String = String.chr("a".unicode_at(0) + index)
 	item_button.text = "( %s ) %s" % [char, item.get_entity_name()]
 	var shortcut_event := InputEventKey.new()
-	shortcut_event.keycode = KEY_A + index
+	shortcut_event.keycode = (KEY_A + index) as Key
 	item_button.shortcut = Shortcut.new()
 	item_button.shortcut.events = [shortcut_event]
 	item_button.pressed.connect(button_pressed.bind(item))

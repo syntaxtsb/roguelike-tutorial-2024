@@ -3,11 +3,6 @@ extends RefCounted
 
 signal entity_placed(entity)
 
-const tile_types = {
-	"floor": preload("res://assets/definitions/tiles/tile_definition_floor.tres"),
-	"wall": preload("res://assets/definitions/tiles/tile_definition_wall.tres"),
-}
-
 const entity_pathfinding_weight: float = 10.0
 
 var width: int
@@ -31,26 +26,8 @@ func _setup_tiles() -> void:
 	for y in height:
 		for x in width:
 			var tile_position := Vector2i(x, y)
-			var tile := Tile.new(tile_position, tile_types.wall)
+			var tile := Tile.new(tile_position, "wall")
 			tiles.append(tile)
-
-
-func get_tile(grid_position: Vector2i) -> Tile:
-	var tile_index: int = grid_to_index(grid_position)
-	if tile_index == -1:
-		return null
-	return tiles[tile_index]
-
-
-func get_tile_xy(x: int, y: int) -> Tile:
-	var grid_position := Vector2i(x, y)
-	return get_tile(grid_position)
-
-
-func grid_to_index(grid_position: Vector2i) -> int:
-	if not is_in_bounds(grid_position):
-		return -1
-	return grid_position.y * width + grid_position.x
 
 
 func is_in_bounds(coordinate: Vector2i) -> bool:
@@ -60,6 +37,20 @@ func is_in_bounds(coordinate: Vector2i) -> bool:
 		and 0 <= coordinate.y
 		and coordinate.y < height
 	)
+
+
+func get_tile_xy(x: int, y: int) -> Tile:
+	var grid_position := Vector2i(x, y)
+	return get_tile(grid_position)
+
+
+func get_tile(grid_position: Vector2i) -> Tile:
+	var tile_index: int = grid_to_index(grid_position)
+	if tile_index == -1:
+		return null
+	return tiles[tile_index]
+
+
 func get_blocking_entity_at_location(grid_position: Vector2i) -> Entity:
 	for entity in entities:
 		if entity.is_blocking_movement() and entity.grid_position == grid_position:
@@ -67,12 +58,10 @@ func get_blocking_entity_at_location(grid_position: Vector2i) -> Entity:
 	return null
 
 
-func register_blocking_entity(entity: Entity) -> void:
-	pathfinder.set_point_weight_scale(entity.grid_position, entity_pathfinding_weight)
-
-
-func unregister_blocking_entity(entity: Entity) -> void:
-	pathfinder.set_point_weight_scale(entity.grid_position, 0)
+func grid_to_index(grid_position: Vector2i) -> int:
+	if not is_in_bounds(grid_position):
+		return -1
+	return grid_position.y * width + grid_position.x
 
 
 func setup_pathfinding() -> void:
@@ -88,12 +77,29 @@ func setup_pathfinding() -> void:
 		if entity.is_blocking_movement():
 			register_blocking_entity(entity)
 
+
+func register_blocking_entity(entity: Entity) -> void:
+	pathfinder.set_point_weight_scale(entity.grid_position, entity_pathfinding_weight)
+
+
+func unregister_blocking_entity(entity: Entity) -> void:
+	pathfinder.set_point_weight_scale(entity.grid_position, 0)
+
+
 func get_actors() -> Array[Entity]:
 	var actors: Array[Entity] = []
 	for entity in entities:
-		if entity.is_alive():
+		if entity.get_entity_type() == Entity.EntityType.ACTOR and entity.is_alive():
 			actors.append(entity)
 	return actors
+
+
+func get_items() -> Array[Entity]:
+	var items: Array[Entity] = []
+	for entity in entities:
+		if entity.consumable_component != null:
+			items.append(entity)
+	return items
 
 
 func get_actor_at_location(location: Vector2i) -> Entity:
@@ -103,9 +109,56 @@ func get_actor_at_location(location: Vector2i) -> Entity:
 	return null
 
 
-func get_items() -> Array[Entity]:
-	var items: Array[Entity] = []
+func save() -> void:
+	var file = FileAccess.open("user://save_game.dat", FileAccess.WRITE)
+	var save_data: Dictionary = get_save_data()
+	var save_string: String = JSON.stringify(save_data)
+	var save_hash: String = save_string.sha256_text()
+	file.store_line(save_hash)
+	file.store_line(save_string)
+
+
+func load_game() -> bool:
+	var file = FileAccess.open("user://save_game.dat", FileAccess.READ)
+	var retrieved_hash: String = file.get_line()
+	var save_string: String = file.get_line()
+	var calculated_hash: String = save_string.sha256_text()
+	var valid_hash: bool = retrieved_hash == calculated_hash
+	if not valid_hash:
+		return false
+	var save_data: Dictionary = JSON.parse_string(save_string)
+	restore(save_data)
+	return true
+
+
+func restore(save_data: Dictionary) -> void:
+	width = save_data["width"]
+	height = save_data["height"]
+	_setup_tiles()
+	for i in tiles.size():
+		tiles[i].restore(save_data["tiles"][i])
+	setup_pathfinding()
+	player.restore(save_data["player"])
+	player.map_data = self
+	entities = [player]
+	for entity_data in save_data["entities"]:
+		var new_entity := Entity.new(self, Vector2i.ZERO, "")
+		new_entity.restore(entity_data)
+		entities.append(new_entity)
+
+
+func get_save_data() -> Dictionary:
+	var save_data := {
+		"width": width,
+		"height": height,
+		"player": player.get_save_data(),
+		"entities": [],
+		"tiles": [],
+	}
 	for entity in entities:
-		if entity.consumable_component != null:
-			items.append(entity)
-	return items
+		if entity == player:
+			continue
+		save_data["entities"].append(entity.get_save_data())
+	for tile in tiles:
+		save_data["tiles"].append(tile.get_save_data())
+	return save_data
