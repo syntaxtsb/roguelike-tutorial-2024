@@ -6,6 +6,11 @@ extends Node
 
 var _fov: Array[Tile] = []
 
+
+func reset_fov() -> void:
+	_fov = []
+
+
 func update_fov(map_data: MapData, origin: Vector2i, radius: int) -> void:
 	clear_fov()
 	var start_tile: Tile = map_data.get_tile(origin)

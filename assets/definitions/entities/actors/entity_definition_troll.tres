@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="EntityDefinition" load_steps=7 format=3 uid="uid://csbcskrot7cgk"]
+[gd_resource type="Resource" script_class="EntityDefinition" load_steps=9 format=3 uid="uid://csbcskrot7cgk"]
 
 [ext_resource type="Texture2D" uid="uid://dfh2iocbu113t" path="res://assets/resources/default_death_texture.tres" id="1_6bqkq"]
 [ext_resource type="Script" path="res://src/entities/entity_definition.gd" id="1_7q3lm"]
 [ext_resource type="Script" path="res://src/entities/actors/components/component_definitions/fighter_component_definition.gd" id="1_lo7yb"]
 [ext_resource type="Texture2D" uid="uid://cvh1nfxhsqgrf" path="res://assets/images/monochrome_packed.png" id="2_5pxur"]
+[ext_resource type="Script" path="res://src/entities/actors/components/component_definitions/level_component_definition.gd" id="3_esibs"]
 
 [sub_resource type="Resource" id="Resource_tsouv"]
 script = ExtResource("1_lo7yb")
@@ -12,6 +13,12 @@ power = 4
 defense = 1
 death_texture = ExtResource("1_6bqkq")
 death_color = Color(0.545098, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_1i7im"]
+script = ExtResource("3_esibs")
+level_up_base = 0
+level_up_factor = 150
+xp_given = 100
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_be7nr"]
 atlas = ExtResource("2_5pxur")
@@ -27,3 +34,4 @@ type = 2
 fighter_definition = SubResource("Resource_tsouv")
 ai_type = 1
 inventory_capacity = 0
+level_info = SubResource("Resource_1i7im")
