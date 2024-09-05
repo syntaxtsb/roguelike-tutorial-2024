@@ -53,8 +53,9 @@ bg_color = Color(0, 0, 0.498039, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pa3jy"]
 bg_color = Color(0, 0.34902, 1, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_ctd5u"]
+[sub_resource type="LabelSettings" id="LabelSettings_3jydg"]
 font = ExtResource("9_iqt6l")
+font_color = Color(0.498039, 1, 0, 1)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_db81p"]
 content_margin_left = 8.0
@@ -220,7 +221,7 @@ vertical_alignment = 1
 [node name="MouseoverLabel" type="Label" parent="VBoxContainer/InfoBar/StatsPanel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 10
-label_settings = SubResource("LabelSettings_ctd5u")
+label_settings = SubResource("LabelSettings_3jydg")
 
 [node name="DungeonFloorLabel" type="Label" parent="VBoxContainer/InfoBar/StatsPanel/VBoxContainer"]
 layout_mode = 2
@@ -249,3 +250,4 @@ size_flags_horizontal = 3
 [connection signal="player_created" from="VBoxContainer/SubViewportContainer/SubViewport/Game" to="VBoxContainer/InfoBar/StatsPanel/VBoxContainer/CharacterInfoBox" method="setup"]
 [connection signal="dungeon_floor_changed" from="VBoxContainer/SubViewportContainer/SubViewport/Game/Map" to="VBoxContainer/InfoBar/StatsPanel/VBoxContainer/DungeonFloorLabel" method="set_dungeon_floor"]
 [connection signal="entities_focused" from="VBoxContainer/SubViewportContainer/SubViewport/Game/Map/MouseoverChecker" to="VBoxContainer/InfoBar/StatsPanel/VBoxContainer/MouseoverLabel" method="set_text"]
+[connection signal="entities_focused" from="VBoxContainer/SubViewportContainer/SubViewport/Game/Map/Reticle" to="VBoxContainer/InfoBar/StatsPanel/VBoxContainer/MouseoverLabel" method="set_text"]

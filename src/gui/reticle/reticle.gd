@@ -2,6 +2,7 @@ class_name Reticle
 extends Node2D
 
 signal position_selected(grid_position)
+signal entities_focused(entity_list)
 
 const directions = {
 	"Move up": Vector2i.UP,
@@ -59,8 +60,12 @@ func _physics_process(_delta: float) -> void:
 	
 	if Input.is_action_just_pressed("ui_accept"):
 		position_selected.emit(grid_position)
-	if Input.is_action_just_pressed("UI back"):
+		entities_focused.emit("")
+	elif Input.is_action_just_pressed("UI back"):
 		position_selected.emit(Vector2i(-1, -1))
+		entities_focused.emit("")
+	else:
+		entities_focused.emit(map_data.get_names_at_location(grid_position))
 
 
 func _setup_border(radius: int) -> void:
