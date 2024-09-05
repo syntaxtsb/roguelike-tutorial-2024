@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://src/entities/entity_definition.gd" id="1_kh8ak"]
 [ext_resource type="Texture2D" uid="uid://cvh1nfxhsqgrf" path="res://assets/images/monochrome_packed.png" id="3_wyupv"]
 
-[sub_resource type="Resource" id="Resource_rw6tq"]
+[sub_resource type="Resource" id="Resource_7l2m8"]
 script = ExtResource("1_0wx7g")
 damage = 20
 maximum_range = 5
@@ -21,5 +21,5 @@ color = Color(1, 1, 0, 1)
 is_blocking_movement = false
 type = 1
 ai_type = 0
-consumable_definition = SubResource("Resource_rw6tq")
+item_definition = SubResource("Resource_7l2m8")
 inventory_capacity = 0

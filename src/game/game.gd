@@ -3,7 +3,7 @@ extends Node2D
 
 signal player_created(player)
 
-const player_definition: EntityDefinition = preload("res://assets/definitions/entities/actors/entity_definition_player.tres")
+#const player_definition: EntityDefinition = preload("res://assets/definitions/entities/actors/entity_definition_player.tres")
 const level_up_menu_scene: PackedScene = preload("res://src/gui/level_up_menu/level_up_menu.tscn")
 
 @onready var player: Entity
@@ -14,6 +14,9 @@ const level_up_menu_scene: PackedScene = preload("res://src/gui/level_up_menu/le
 
 func new_game() -> void:
 	player = Entity.new(null, Vector2i.ZERO, "player")
+	_add_player_start_equipment("dagger")
+	_add_player_start_equipment("leather_armor")
+	
 	player.level_component.level_up_required.connect(_on_player_level_up_requested)
 	player_created.emit(player)
 	remove_child(camera)
@@ -24,6 +27,12 @@ func new_game() -> void:
 			"Hello and welcome, adventurer, to yet another dungeon!",
 			GameColors.WELCOME_TEXT).call_deferred()
 	camera.make_current.call_deferred()
+
+
+func _add_player_start_equipment(item_key: String) -> void:
+	var item := Entity.new(null, Vector2i.ZERO, item_key)
+	player.inventory_component.items.append(item)
+	player.equipment_component.toggle_equip(item, false)
 
 
 func load_game() -> bool:
@@ -68,3 +77,4 @@ func _on_player_level_up_requested() -> void:
 	set_physics_process(false)
 	await level_up_menu.level_up_completed
 	set_physics_process.bind(true).call_deferred()
+

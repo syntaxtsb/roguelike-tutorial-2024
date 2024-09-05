@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://src/entities/entity_definition.gd" id="1_ptyci"]
 [ext_resource type="Texture2D" uid="uid://cvh1nfxhsqgrf" path="res://assets/images/monochrome_packed.png" id="3_8bg6u"]
 
-[sub_resource type="Resource" id="Resource_kqgkj"]
+[sub_resource type="Resource" id="Resource_fulji"]
 script = ExtResource("1_3nsbo")
 number_of_turns = 10
 
@@ -20,5 +20,5 @@ color = Color(0.811765, 0.247059, 1, 1)
 is_blocking_movement = false
 type = 1
 ai_type = 0
-consumable_definition = SubResource("Resource_kqgkj")
+item_definition = SubResource("Resource_fulji")
 inventory_capacity = 0
