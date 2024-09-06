@@ -1,6 +1,13 @@
 # r/roguelikedev's 2024 roguelike tutorial
 
-Paticipating in the [2024 roguelike tutorial](https://www.reddit.com/r/roguelikedev/comments/1dt8bqm/roguelikedev_does_the_complete_roguelike_tutorial/) at the r/roguelikedev Reddit. This project was written for the Godot 4.2 engine, mostly following along with [SalinaDev's Godot tutorial from 2023](https://selinadev.github.io/tags/roguelike/).
+Paticipating in the [2024 roguelike tutorial](https://www.reddit.com/r/roguelikedev/comments/1dt8bqm/roguelikedev_does_the_complete_roguelike_tutorial/) at the r/roguelikedev Reddit. This project was written for the Godot 4.2 engine, mostly following along with [SalinaDev's Godot tutorial from 2023](https://selinadev.github.io/tags/roguelike/). All sprites and font are free assets taken from [kenney.nl](https://kenney.nl/).
+
+There is no limit to the number of dungeon floors generated, but you won't see anything new beyond floor 7.
+
+## Noteable deviations from tutorial content
+
+- Field of view is using the "symmetric shadowcasting" algorithm described [here](https://www.albertford.com/shadowcasting/), with an added maximum view distance parameter (set to a constant 8 tiles for this project).
+- Look action also includes inspection of tiles.
 
 ## Controls
 
